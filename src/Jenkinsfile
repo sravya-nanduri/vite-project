@@ -2,6 +2,9 @@ pipeline{
 		agent any
 				stages{
 					stage("deployment"){
+						steps{
+
+						
 						script{
 							sh 'tar -cvzf dist.tar.gz *'
 							sh 'scp jenkins@65.2.29.148:/var/www/html/team1-fe/'
@@ -12,4 +15,10 @@ pipeline{
 							}
 							}
 					}
+				}
+			post{
+				always{
+					cleanWS()
+				}
+			}
     }
